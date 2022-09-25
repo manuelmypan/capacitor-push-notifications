@@ -122,9 +122,11 @@ On Android, there are various system and app states that can affect the delivery
 * [`listChannels()`](#listchannels)
 * [`checkPermissions()`](#checkpermissions)
 * [`requestPermissions()`](#requestpermissions)
+* [`backgroundTaskCompleted()`](#backgroundtaskcompleted)
 * [`addListener('registration', ...)`](#addlistenerregistration-)
 * [`addListener('registrationError', ...)`](#addlistenerregistrationerror-)
 * [`addListener('pushNotificationReceived', ...)`](#addlistenerpushnotificationreceived-)
+* [`addListener('backgroundPushNotificationReceived', ...)`](#addlistenerbackgroundpushnotificationreceived-)
 * [`addListener('pushNotificationActionPerformed', ...)`](#addlistenerpushnotificationactionperformed-)
 * [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
@@ -264,6 +266,17 @@ Request permission to receive push notifications.
 --------------------
 
 
+### backgroundTaskCompleted()
+
+```typescript
+backgroundTaskCompleted() => Promise<void>
+```
+
+Signal to OS that background task completed.
+
+--------------------
+
+
 ### addListener('registration', ...)
 
 ```typescript
@@ -315,6 +328,24 @@ Called when the device receives a push notification.
 | Param              | Type                                                                                                 |
 | ------------------ | ---------------------------------------------------------------------------------------------------- |
 | **`eventName`**    | <code>'pushNotificationReceived'</code>                                                              |
+| **`listenerFunc`** | <code>(notification: <a href="#pushnotificationschema">PushNotificationSchema</a>) =&gt; void</code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('backgroundPushNotificationReceived', ...)
+
+```typescript
+addListener(eventName: 'backgroundPushNotificationReceived', listenerFunc: (notification: PushNotificationSchema) => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+Called when the device receives a background push notification.
+
+| Param              | Type                                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'backgroundPushNotificationReceived'</code>                                                    |
 | **`listenerFunc`** | <code>(notification: <a href="#pushnotificationschema">PushNotificationSchema</a>) =&gt; void</code> |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>

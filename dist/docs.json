@@ -218,6 +218,16 @@
         "slug": "requestpermissions"
       },
       {
+        "name": "backgroundTaskCompleted",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "Signal to OS that background task completed.",
+        "complexTypes": [],
+        "slug": "backgroundtaskcompleted"
+      },
+      {
         "name": "addListener",
         "signature": "(eventName: 'registration', listenerFunc: (token: Token) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
         "parameters": [
@@ -317,6 +327,30 @@
           "PushNotificationSchema"
         ],
         "slug": "addlistenerpushnotificationreceived-"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'backgroundPushNotificationReceived', listenerFunc: (notification: PushNotificationSchema) => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'backgroundPushNotificationReceived'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "(notification: PushNotificationSchema) => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "Called when the device receives a background push notification.",
+        "complexTypes": [
+          "PluginListenerHandle",
+          "PushNotificationSchema"
+        ],
+        "slug": "addlistenerbackgroundpushnotificationreceived-"
       },
       {
         "name": "addListener",

@@ -89,6 +89,11 @@ export interface PushNotificationsPlugin {
      */
     requestPermissions(): Promise<PermissionStatus>;
     /**
+     * Signal to OS that background task completed.
+     *
+     */
+    backgroundTaskCompleted(): Promise<void>;
+    /**
      * Called when the push notification registration finishes without problems.
      *
      * Provides the push notification token.
@@ -110,6 +115,11 @@ export interface PushNotificationsPlugin {
      * @since 1.0.0
      */
     addListener(eventName: 'pushNotificationReceived', listenerFunc: (notification: PushNotificationSchema) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    /**
+     * Called when the device receives a background push notification.
+     *
+     */
+    addListener(eventName: 'backgroundPushNotificationReceived', listenerFunc: (notification: PushNotificationSchema) => void): Promise<PluginListenerHandle> & PluginListenerHandle;
     /**
      * Called when an action is performed on a push notification.
      *

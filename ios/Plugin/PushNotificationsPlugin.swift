@@ -16,11 +16,13 @@ enum PushNotificationsPermissions: String {
 @objc(PushNotificationsPlugin)
 public class PushNotificationsPlugin: CAPPlugin {
     private let notificationDelegateHandler = PushNotificationsHandler()
+    private let backgroundNotificationDelegateHandler = BackgroundPushNotificationsHandler.shared
     private var appDelegateRegistrationCalled: Bool = false
 
     override public func load() {
         self.bridge?.notificationRouter.pushNotificationHandler = self.notificationDelegateHandler
         self.notificationDelegateHandler.plugin = self
+        self.backgroundNotificationDelegateHandler.plugin = self
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.didRegisterForRemoteNotificationsWithDeviceToken(notification:)),
@@ -42,6 +44,19 @@ public class PushNotificationsPlugin: CAPPlugin {
         }
         call.resolve()
     }
+    
+    @objc func backgroundTaskCompleted(_ call: CAPPluginCall) {
+        var result:  UIBackgroundFetchResult
+        
+        switch call.getString("result", "") {
+        case "noData": result = .noData
+        case "newData": result = .newData
+        default: result = .failed
+        }
+        self.backgroundNotificationDelegateHandler.taskCompleted(result: result)
+        call.resolve()
+    }
+
 
     /**
      * Request notification permission

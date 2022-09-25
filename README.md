@@ -122,7 +122,7 @@ On Android, there are various system and app states that can affect the delivery
 * [`listChannels()`](#listchannels)
 * [`checkPermissions()`](#checkpermissions)
 * [`requestPermissions()`](#requestpermissions)
-* [`backgroundTaskCompleted()`](#backgroundtaskcompleted)
+* [`backgroundTaskCompleted(...)`](#backgroundtaskcompleted)
 * [`addListener('registration', ...)`](#addlistenerregistration-)
 * [`addListener('registrationError', ...)`](#addlistenerregistrationerror-)
 * [`addListener('pushNotificationReceived', ...)`](#addlistenerpushnotificationreceived-)
@@ -266,13 +266,17 @@ Request permission to receive push notifications.
 --------------------
 
 
-### backgroundTaskCompleted()
+### backgroundTaskCompleted(...)
 
 ```typescript
-backgroundTaskCompleted() => Promise<void>
+backgroundTaskCompleted(options: { result: 'failed' | 'noData' | 'newData'; }) => Promise<void>
 ```
 
 Signal to OS that background task completed.
+
+| Param         | Type                                                        |
+| ------------- | ----------------------------------------------------------- |
+| **`options`** | <code>{ result: 'failed' \| 'noData' \| 'newData'; }</code> |
 
 --------------------
 

@@ -108,7 +108,7 @@ export interface PushNotificationsPlugin {
    * Signal to OS that background task completed.
    *
    */
-   backgroundTaskCompleted(): Promise<void>;
+   backgroundTaskCompleted(options: { result: 'failed' | 'noData' | 'newData' }): Promise<void>;
 
   /**
    * Called when the push notification registration finishes without problems.

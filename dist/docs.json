@@ -219,8 +219,14 @@
       },
       {
         "name": "backgroundTaskCompleted",
-        "signature": "() => Promise<void>",
-        "parameters": [],
+        "signature": "(options: { result: 'failed' | 'noData' | 'newData'; }) => Promise<void>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ result: 'failed' | 'noData' | 'newData'; }"
+          }
+        ],
         "returns": "Promise<void>",
         "tags": [],
         "docs": "Signal to OS that background task completed.",
